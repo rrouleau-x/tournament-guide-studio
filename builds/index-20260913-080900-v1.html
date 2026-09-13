@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0E1116">
+<title>Field Guide — Tournament Guides for Youth Soccer Clubs</title>
+<meta name="description" content="We turn a tournament packet into a branded parent travel guide and offline app. Built for clubs and tournament organizers.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E1116;
+    --ink-2:#1B2027;
+    --body:#3D444E;
+    --muted:#6B7280;
+    --line:#E3E6EA;
+    --line-dark:#232A33;
+    --paper:#FFFFFF;
+    --wash:#F6F7F9;
+    --pitch:#1E7A46;
+    --pitch-light:#E8F4ED;
+    --amber:#B45309;
+    --amber-light:#FEF6E7;
+    --radius:14px;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+    color:var(--body);
+    background:var(--paper);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px;}
+  h1,h2,h3,h4{color:var(--ink);margin:0;letter-spacing:-0.02em;line-height:1.15;}
+  h1{font-size:2rem;font-weight:800;}
+  h2{font-size:1.5rem;font-weight:700;}
+  h3{font-size:1.05rem;font-weight:650;}
+  p{margin:0 0 16px;}
+  a{color:var(--pitch);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .eyebrow{
+    display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.13em;
+    text-transform:uppercase;color:var(--muted);margin-bottom:14px;
+  }
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+    backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;height:66px;}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--ink);
+    font-size:1.02rem;letter-spacing:-0.02em;}
+  .brand svg{display:block;}
+  .nav-links{display:none;gap:28px;font-size:.9rem;font-weight:500;}
+  .nav-links a{color:var(--body);}
+  .nav-cta{
+    background:var(--ink);color:#fff !important;padding:9px 18px;border-radius:9px;
+    font-size:.86rem;font-weight:600;text-decoration:none !important;
+  }
+  .nav-cta:hover{background:var(--ink-2);}
+
+  /* ---------- hero ---------- */
+  .hero{padding:56px 0 48px;background:
+    radial-gradient(120% 100% at 100% 0%, #EEF4F0 0%, rgba(255,255,255,0) 58%);}
+  .hero h1{max-width:15ch;margin-bottom:20px;}
+  .hero .lede{font-size:1.06rem;max-width:56ch;color:var(--body);}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px;}
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;padding:13px 22px;border-radius:10px;
+    font-weight:600;font-size:.94rem;text-decoration:none !important;transition:.15s;
+  }
+  .btn-primary{background:var(--ink);color:#fff;}
+  .btn-primary:hover{background:var(--ink-2);}
+  .btn-ghost{background:#fff;color:var(--ink);border:1px solid var(--line);}
+  .btn-ghost:hover{border-color:#C9CFD6;}
+
+  .proof-row{
+    display:flex;flex-wrap:wrap;gap:10px;margin-top:34px;padding-top:26px;
+    border-top:1px solid var(--line);
+  }
+  .chip{
+    display:inline-flex;align-items:center;gap:8px;background:var(--wash);
+    border:1px solid var(--line);border-radius:999px;padding:7px 15px;
+    font-size:.82rem;font-weight:550;color:var(--body);
+  }
+  .chip svg{flex:0 0 auto;}
+
+  /* ---------- sections ---------- */
+  section{padding:56px 0;}
+  .section-head{max-width:64ch;margin-bottom:36px;}
+  .section-head p{font-size:1.02rem;margin-top:14px;}
+
+  /* ---------- problem stats ---------- */
+  .stats{display:grid;gap:18px;}
+  .stat{
+    background:var(--wash);border:1px solid var(--line);border-radius:var(--radius);
+    padding:24px;
+  }
+  .stat .fig{font-size:1.9rem;font-weight:800;color:var(--ink);letter-spacing:-0.03em;
+    line-height:1.1;margin-bottom:8px;}
+  .stat .lbl{font-size:.92rem;color:var(--body);}
+  .stat .src{font-size:.74rem;color:var(--muted);margin-top:12px;
+    display:block;line-height:1.45;}
+
+  /* ---------- cards ---------- */
+  .cards{display:grid;gap:18px;}
+  .card{
+    border:1px solid var(--line);border-radius:var(--radius);padding:26px;background:#fff;
+    transition:.18s;
+  }
+  .card:hover{border-color:#C9CFD6;box-shadow:0 6px 22px rgba(14,17,22,.06);}
+  .card .ico{
+    width:42px;height:42px;border-radius:11px;background:var(--pitch-light);
+    display:flex;align-items:center;justify-content:center;margin-bottom:18px;
+  }
+  .card h3{margin-bottom:9px;}
+  .card p{font-size:.93rem;margin:0;}
+
+  /* ---------- steps ---------- */
+  .steps{display:grid;gap:6px;counter-reset:s;}
+  .step{
+    display:flex;gap:18px;padding:22px 0;border-bottom:1px solid var(--line);
+  }
+  .step:last-child{border-bottom:0;}
+  .step .num{
+    flex:0 0 34px;height:34px;border-radius:50%;background:var(--ink);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;
+  }
+  .step h3{margin-bottom:6px;}
+  .step p{font-size:.93rem;margin:0;}
+
+  /* ---------- compare ---------- */
+  .compare{display:grid;gap:18px;}
+  .compare-col{border-radius:var(--radius);padding:26px;border:1px solid var(--line);}
+  .compare-col.bad{background:var(--wash);}
+  .compare-col.good{background:#fff;border-color:#BBD9C8;box-shadow:0 6px 24px rgba(30,122,70,.08);}
+  .compare-col h3{margin-bottom:16px;font-size:.95rem;display:flex;align-items:center;gap:9px;}
+  .compare-col ul{list-style:none;margin:0;padding:0;}
+  .compare-col li{
+    display:flex;gap:11px;padding:9px 0;font-size:.92rem;align-items:flex-start;
+  }
+  .compare-col li svg{margin-top:3px;flex:0 0 auto;}
+
+  /* ---------- pricing ---------- */
+  .plans{display:grid;gap:18px;}
+  .plan{
+    border:1px solid var(--line);border-radius:var(--radius);padding:28px;background:#fff;
+    display:flex;flex-direction:column;
+  }
+  .plan.featured{border:2px solid var(--ink);position:relative;}
+  .plan .tag{
+    position:absolute;top:-11px;left:26px;background:var(--ink);color:#fff;
+    font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+    padding:4px 11px;border-radius:999px;
+  }
+  .plan h3{font-size:1.02rem;margin-bottom:6px;}
+  .plan .sub{font-size:.86rem;color:var(--muted);margin-bottom:20px;min-height:38px;}
+  .plan .price{font-size:2.1rem;font-weight:800;color:var(--ink);letter-spacing:-0.03em;
+    line-height:1;}
+  .plan .per{font-size:.82rem;color:var(--muted);margin-top:7px;display:block;}
+  .plan ul{list-style:none;margin:22px 0 0;padding:0;flex:1;}
+  .plan li{display:flex;gap:10px;padding:8px 0;font-size:.9rem;align-items:flex-start;}
+  .plan li svg{margin-top:4px;flex:0 0 auto;}
+  .anchor-note{
+    margin-top:22px;background:var(--pitch-light);border:1px solid #BBD9C8;
+    border-radius:var(--radius);padding:22px 24px;
+  }
+  .anchor-note h3{margin-bottom:10px;font-size:.98rem;}
+  .anchor-note p{font-size:.92rem;margin:0;}
+
+  /* ---------- sponsor block ---------- */
+  .sponsor{
+    background:var(--ink);color:#C7CDD5;border-radius:var(--radius);padding:34px 26px;
+  }
+  .sponsor h2{color:#fff;margin-bottom:16px;}
+  .sponsor p{color:#C7CDD5;font-size:1rem;}
+  .sponsor .tiers{display:grid;gap:12px;margin-top:24px;}
+  .tier{
+    background:rgba(255,255,255,.06);border:1px solid var(--line-dark);
+    border-radius:11px;padding:16px 18px;
+  }
+  .tier .t-name{color:#fff;font-weight:650;font-size:.92rem;}
+  .tier .t-price{color:#8FD3AB;font-weight:700;font-size:.92rem;float:right;}
+  .tier .t-desc{font-size:.84rem;color:#9AA3AE;margin-top:6px;clear:both;}
+  .sponsor .src{font-size:.74rem;color:#7B848F;margin-top:22px;margin-bottom:0;}
+
+  /* ---------- faq ---------- */
+  .faq{display:grid;gap:0;}
+  details{border-bottom:1px solid var(--line);padding:18px 0;}
+  details summary{
+    cursor:pointer;font-weight:620;color:var(--ink);font-size:.98rem;
+    list-style:none;display:flex;justify-content:space-between;gap:16px;align-items:center;
+  }
+  details summary::-webkit-details-marker{display:none;}
+  details summary .pm{flex:0 0 auto;color:var(--muted);transition:.2s;}
+  details[open] summary .pm{transform:rotate(45deg);}
+  details p{margin:14px 0 0;font-size:.93rem;}
+
+  /* ---------- cta ---------- */
+  .cta{
+    background:var(--wash);border:1px solid var(--line);border-radius:var(--radius);
+    padding:40px 26px;text-align:center;
+  }
+  .cta h2{margin-bottom:14px;}
+  .cta p{max-width:52ch;margin:0 auto 26px;font-size:1rem;}
+
+  /* ---------- footer ---------- */
+  footer{border-top:1px solid var(--line);padding:34px 0;font-size:.82rem;color:var(--muted);}
+  .foot-grid{display:grid;gap:18px;}
+  .foot-note{background:var(--amber-light);border:1px solid #F0DCB4;color:var(--amber);
+    border-radius:11px;padding:15px 17px;font-size:.83rem;font-weight:550;line-height:1.5;}
+
+  /* ---------- responsive ---------- */
+  @media(min-width:760px){
+    h1{font-size:2.9rem;}
+    h2{font-size:1.95rem;}
+    .hero{padding:84px 0 68px;}
+    .hero .lede{font-size:1.16rem;}
+    section{padding:80px 0;}
+    .wrap{padding:0 40px;}
+    .nav-links{display:flex;}
+    .stats{grid-template-columns:repeat(3,1fr);}
+    .cards{grid-template-columns:repeat(3,1fr);}
+    .compare{grid-template-columns:1fr 1fr;}
+    .plans{grid-template-columns:repeat(3,1fr);}
+    .sponsor{padding:52px 48px;}
+    .sponsor .tiers{grid-template-columns:repeat(3,1fr);}
+    .cta{padding:64px 48px;}
+    .foot-grid{grid-template-columns:2fr 1fr;}
+    .step{padding:26px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E7A46" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M9 7h7"/><path d="M9 11h5"/></svg>
+      Field Guide
+    </div>
+    <nav class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#why">Why it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="nav-cta" href="#pricing">See pricing</a>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="wrap">
+    <span class="eyebrow">For youth soccer clubs &amp; tournament organizers</span>
+    <h1>Every tournament. One guide. No group-chat chaos.</h1>
+    <p class="lede">
+      Send us the tournament packet. We send back a branded parent travel guide
+      and an offline-ready phone app — hotels with real drive times, arrival times
+      that hit the coach's report time, what's confirmed, what's still pending, and
+      what parents need to do this week.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#pricing">
+        See pricing
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+      <a class="btn btn-ghost" href="https://rrouleau-x.github.io/sporting-jax-guide/app/" target="_blank" rel="noopener">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
+        Open the live demo
+      </a>
+    </div>
+    <div class="proof-row">
+      <span class="chip">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1E7A46" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        Works offline on iPhone
+      </span>
+      <span class="chip">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1E7A46" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        Branded to your club
+      </span>
+      <span class="chip">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1E7A46" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        48-hour turnaround
+      </span>
+      <span class="chip">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1E7A46" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        No app store required
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section id="problem">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">The problem</span>
+      <h2>Volunteer parents are running a travel agency on their phone.</h2>
+      <p>
+        A team manager books nothing, plans everything, and answers the same
+        eleven questions from thirty families — every single tournament weekend.
+        Meanwhile the "official" communication is a PDF and a scheduling link.
+      </p>
+    </div>
+    <div class="stats">
+      <div class="stat">
+        <div class="fig">3h 23m</div>
+        <div class="lbl">Average time a sports parent spends on a game or practice day — before they've done any of their own work.</div>
+        <span class="src">Source: Aspen Institute Project Play, parent time-commitment survey</span>
+      </div>
+      <div class="stat">
+        <div class="fig">$350</div>
+        <div class="lbl">What a single vendor booth costs at a mid-size youth soccer tournament for four days.</div>
+        <span class="src">Source: published vendor rate card, Murrieta Youth Soccer League</span>
+      </div>
+      <div class="stat">
+        <div class="fig">$500&ndash;$5,000</div>
+        <div class="lbl">Typical range of a single local club sponsorship tier — money already being sold, mostly on printed banners.</div>
+        <span class="src">Source: published sponsorship tiers, Cape Express Soccer Club</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU GET -->
+<section id="what" style="background:var(--wash);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">What you get</span>
+      <h2>One packet in. Three deliverables out.</h2>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="ico">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#1E7A46" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6"/><path d="M9 17h4"/></svg>
+        </div>
+        <h3>The Parent Guide</h3>
+        <p>
+          A 17-section, mobile-first guide covering arrival times, hotels with
+          verified drive distances, parking, weather, packing lists, tournament
+          rules, and exactly what to do this week. Emailed as HTML parents can
+          actually read on a phone, plus a PDF they can save.
+        </p>
+      </div>
+      <div class="card">
+        <div class="ico">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#1E7A46" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+        </div>
+        <h3>The Offline App</h3>
+        <p>
+          A branded progressive web app on your own link and QR code. Parents
+          add it to their home screen and it still works in a parking lot with
+          no signal — schedule, fields, hotel, contacts, all of it.
+        </p>
+      </div>
+      <div class="card">
+        <div class="ico">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#1E7A46" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
+        </div>
+        <h3>The Live Updates</h3>
+        <p>
+          Schedules shift and weather turns. When the tournament releases the
+          bracket, we refresh the guide and app in place — the same link, the
+          same QR code, always current. No "please disregard the previous email."
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">How it works</span>
+      <h2>You do almost nothing. That's the point.</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <div>
+          <h3>Send us the tournament</h3>
+          <p>A packet, a GotSport or SincSports link, or just the event name and your team. That's the whole intake.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <div>
+          <h3>We build it in 48 hours</h3>
+          <p>We research the venue, verify hotel distances ourselves against Google Maps, pull the rules and tiebreakers, and assemble the guide under your club's brand and colors.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <div>
+          <h3>You review, we publish</h3>
+          <p>You get a draft link. Approve it and we publish to a permanent URL your parents can bookmark, with a QR code for the printed roster sheet.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">4</div>
+        <div>
+          <h3>Information stays honest</h3>
+          <p>Every fact is stamped <strong>Official</strong>, <strong>Confirmed</strong>, <strong>Recommended</strong>, or <strong>Pending</strong>. Parents stop asking "is this final?" because the guide tells them.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY DIFFERENT -->
+<section id="why" style="background:var(--wash);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Why this is different</span>
+      <h2>Nobody else is producing this document.</h2>
+      <p>
+        Scheduling platforms own the bracket and the score. Team apps own the
+        roster and the calendar. Both are commodities now — several are free.
+        The one thing every family still needs, and nobody produces, is the
+        guide that tells them how the weekend actually goes.
+      </p>
+    </div>
+    <div class="compare">
+      <div class="compare-col bad">
+        <h3>What families get today</h3>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9AA3AE" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>A registration confirmation email</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9AA3AE" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>A link to a scheduling platform</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9AA3AE" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>Hotel distances measured from the wrong reference point</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9AA3AE" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>The same questions answered again in the group chat</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9AA3AE" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>Four conflicting emails by Friday</li>
+        </ul>
+      </div>
+      <div class="compare-col good">
+        <h3>What your families get instead</h3>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E7A46" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>One link, bookmarked, works with no signal</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E7A46" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Departure times calculated to the coach's report time, not kickoff</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E7A46" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Hotel drive times verified independently — not copied from a portal</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E7A46" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>A clear "confirmed vs. still pending" box so nobody has to ask</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E7A46" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Sponsor logos in front of every traveling family</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Pricing</span>
+      <h2>Priced so one sponsor covers it.</h2>
+      <p>
+        Clubs already sell sponsorships at $500 to $5,000 per tier and printed
+        program ads at $500 to $1,000 for a full page. The guide is a new place
+        to put those logos — in front of families for the entire weekend,
+        instead of on a banner someone walks past once.
+      </p>
+    </div>
+    <div class="plans">
+
+      <div class="plan">
+        <h3>Per Event</h3>
+        <div class="sub">For a club sending one team somewhere this month.</div>
+        <div class="price">$750</div>
+        <span class="per">per tournament</span>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E7A46" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Full 17-section parent guide, HTML + PDF</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E7A46" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Branded offline app + QR code</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E7A46" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Up to 3 team variants</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E7A46" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Two revision rounds</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E7A46" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Live link, refreshed until the final whistle</li>
+        </ul>
+      </div>
+
+      <div class="plan featured">
+        <span class="tag">Best value</span>
+        <h3>Club Season</h3>
+        <div class="sub">For a club that travels all fall and spring.</div>
+        <div class="price">$2,000</div>
+        <span class="per">per season &mdash; up to 8 events</span>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E7A46" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Everything in Per Event</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E7A46" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>White-labelled under your club crest and colors</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E7A46" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Unlimited parent distribution</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E7A46" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Priority 24-hour turnaround on late schedule releases</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E7A46" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Season archive — parents keep every past guide</li>
+        </ul>
+      </div>
+
+      <div class="plan">
+        <h3>Tournament Organizer</h3>
+        <div class="sub">For the club hosting the event, not just attending.</div>
+        <div class="price">$1,500</div>
+        <span class="per">per hosted event</span>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E7A46" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Guide branded to the tournament, not a single team</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E7A46" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Every visiting club gets the same guide</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E7A46" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Sponsor directory built into the guide</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E7A46" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Stay-to-play housing messaging, handled clearly</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E7A46" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Fewer parent logistics emails to your director</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="anchor-note">
+      <h3>Why this pays for itself</h3>
+      <p>
+        A club selling one Gold sponsorship at $2,500 covers an entire Club Season plan
+        and still has $500 left. A tournament selling two vendor booths at $350 covers
+        half of a hosted-event guide. And a team management app alone runs roughly
+        $10&ndash;$21 per team per month &mdash; a 12-team club already spends more than
+        this on scheduling software that doesn't write a single word for parents.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SPONSOR ANGLE -->
+<section>
+  <div class="wrap">
+    <div class="sponsor">
+      <h2>The part that actually makes you money</h2>
+      <p>
+        The guide isn't just a convenience — it's sponsorship inventory you
+        don't have today. Every traveling family opens it multiple times across
+        the weekend, on their phone, at the venue, in the hotel. That's a
+        better audience than a fence banner, and it already sells for real
+        money in print.
+      </p>
+      <div class="tiers">
+        <div class="tier">
+          <span class="t-name">Presented by</span>
+          <span class="t-price">$1,500</span>
+          <div class="t-desc">Single top slot on the cover and in the app header. One per event.</div>
+        </div>
+        <div class="tier">
+          <span class="t-name">Guide sponsor</span>
+          <span class="t-price">$500</span>
+          <div class="t-desc">Logo in the sponsor directory plus a featured block in a relevant section.</div>
+        </div>
+        <div class="tier">
+          <span class="t-name">Local directory</span>
+          <span class="t-price">$150</span>
+          <div class="t-desc">Restaurants, pharmacies, and shops near the venue — the section parents actually use.</div>
+        </div>
+      </div>
+      <p class="src">
+        Tier pricing above is a proposed rate card benchmarked against published club
+        sponsorship tiers ($500&ndash;$5,000) and printed program ad rates ($500&ndash;$1,000
+        full page). It is not yet market-tested.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="background:var(--wash);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="wrap" style="max-width:820px;">
+    <div class="section-head">
+      <span class="eyebrow">Questions</span>
+      <h2>The things clubs ask first.</h2>
+    </div>
+    <div class="faq">
+      <details open>
+        <summary>Do we need a new app for parents to install?<svg class="pm" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary>
+        <p>No. It's a web link, not an app store download. Parents open it in Safari and tap "Add to Home Screen" — it behaves like an app, works offline, and needs zero setup. Nothing to install from the App Store, nothing to approve.</p>
+      </details>
+      <details>
+        <summary>How is this different from TeamSnap or our scheduling platform?<svg class="pm" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary>
+        <p>Those tools tell you <em>when</em> and <em>where</em>. They don't tell a parent which hotel is actually 12 minutes from the field, what time to leave given a 45-minute report time, whether the pop-up tent policy allows stakes, what's still pending from the tournament, or what to pack for a 105&deg; heat index. That's the gap this fills. It sits alongside your existing tools rather than replacing them.</p>
+      </details>
+      <details>
+        <summary>How current is the information?<svg class="pm" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary>
+        <p>Every fact carries a status label — Official Tournament Information, Confirmed Team Information, Parent Manager Recommendation, or Pending Confirmation. Prices, availability, forecasts, and drive estimates carry an "information current as of" date. We never turn an estimate into a requirement or a recommendation into a coach instruction. When something changes, the live link updates in place.</p>
+      </details>
+      <details>
+        <summary>Can it carry our sponsors?<svg class="pm" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary>
+        <p>Yes, and this is the strongest reason to do it. Sponsor logos, a local business directory, and a single "presented by" slot are all built in. You keep the sponsorship revenue.</p>
+      </details>
+      <details>
+        <summary>What about stay-to-play housing rules?<svg class="pm" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary>
+        <p>Handled carefully and separately. Official partner hotels are listed with the requirement explained plainly, and non-official alternatives are clearly marked as not-to-be-booked until a team manager confirms a proximity exception. Rule requirements are never presented as suggestions, and suggestions are never presented as rules.</p>
+      </details>
+      <details>
+        <summary>Who writes it?<svg class="pm" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary>
+        <p>It's built by a parent manager who got tired of writing the same email forty times — and who has produced guides for real tournaments, including a live app used by families at a 91-team event. The whole approach comes from being the person in the group chat, not from being a software company.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section>
+  <div class="wrap">
+    <div class="cta">
+      <h2>Send one tournament. See what comes back.</h2>
+      <p>
+        Pick your next tournament and we'll build the first guide for it — full
+        length, your colors, your families. If it doesn't replace a dozen
+        group-chat questions, you don't pay.
+      </p>
+      <a class="btn btn-primary" href="mailto:rrouleau@mac.com?subject=Field%20Guide%20%E2%80%94%20first%20tournament">
+        Start with one tournament
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div>
+      <div class="brand" style="margin-bottom:12px;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1E7A46" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M9 7h7"/><path d="M9 11h5"/></svg>
+        Field Guide
+      </div>
+      <p style="max-width:44ch;">
+        Tournament guides and offline apps for youth soccer clubs and event
+        organizers. Built by a parent manager, for parent managers.
+      </p>
+    </div>
+    <div>
+      <p><strong style="color:var(--ink);">Contact</strong><br>
+      <a href="mailto:rrouleau@mac.com">rrouleau@mac.com</a></p>
+    </div>
+  </div>
+  <div class="wrap" style="margin-top:26px;">
+    <div class="foot-note">
+      DRAFT BUILD &mdash; not distributed. Pricing, name, and sponsor tiers are
+      proposals pending approval. The live demo link points to a real production
+      guide built for a real team.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
